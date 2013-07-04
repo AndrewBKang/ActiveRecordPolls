@@ -6,8 +6,3 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create({name: 'andrew'})
-Question.create({body:"question2", poll_id: 1})
-Choice.create({body: 'choice2', question_id: 1})
-Choice.create({body: 'choice3', question_id: 2})
-
