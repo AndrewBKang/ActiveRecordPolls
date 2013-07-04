@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   has_many :questions, through: :polls
   has_many :choices, through: :questions
 
+  validates :name, presence: true
+
 end
