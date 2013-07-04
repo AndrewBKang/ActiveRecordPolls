@@ -6,6 +6,6 @@ class Response < ActiveRecord::Base
 
   validates :respondant_id, unique_respondant: true
   validates :respondant_id, respondant_not_pollster: true
-
+  validates :respondant_id, same_team: true
 
 end

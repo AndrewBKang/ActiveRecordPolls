@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704144341) do
+ActiveRecord::Schema.define(:version => 20130704175502) do
 
   create_table "choices", :force => true do |t|
     t.text     "body"
@@ -20,12 +20,16 @@ ActiveRecord::Schema.define(:version => 20130704144341) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "choices", ["question_id"], :name => "index_choices_on_question_id"
+
   create_table "polls", :force => true do |t|
     t.integer  "pollster_id"
     t.string   "title"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "polls", ["pollster_id"], :name => "index_polls_on_pollster_id"
 
   create_table "questions", :force => true do |t|
     t.text     "body"
@@ -34,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20130704144341) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "questions", ["poll_id"], :name => "index_questions_on_poll_id"
+
   create_table "responses", :force => true do |t|
     t.integer  "choice_id"
     t.integer  "respondant_id"
@@ -41,10 +47,22 @@ ActiveRecord::Schema.define(:version => 20130704144341) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "users", :force => true do |t|
+  add_index "responses", ["choice_id"], :name => "index_responses_on_choice_id"
+  add_index "responses", ["respondant_id"], :name => "index_responses_on_respondant_id"
+
+  create_table "teams", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "team_id"
+  end
+
+  add_index "users", ["team_id"], :name => "index_users_on_team_id"
 
 end
