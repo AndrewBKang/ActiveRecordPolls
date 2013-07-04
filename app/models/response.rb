@@ -5,6 +5,7 @@ class Response < ActiveRecord::Base
   belongs_to :respondant, class_name: "User"
 
   validates :respondant_id, unique_respondant: true
-  #
+  validates :respondant_id, respondant_not_pollster: true
+
 
 end
